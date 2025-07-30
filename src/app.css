@@ -1,6 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
@@ -10,7 +9,7 @@
 
 
 @theme {
-  --font-spline-sans-mono: "Spline Sans Mono", monospace;
+  --font-rubik: "Rubik", monospace;
 
   --color-primary-50: #fff5f2;
   --color-primary-100: #fff1ee;
