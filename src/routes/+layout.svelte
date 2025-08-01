@@ -16,16 +16,17 @@
 
 <div class="max-w-5xl mx-auto">
   <Navbar>
-    <NavUl class="mx-auto" {activeUrl}>
-      <!-- svelte-ignore attribute_quoted -->
-      <NavLi class="hover:outline-1 rounded-full" href="/">Home</NavLi>
-      <NavLi class="hover:outline-1 mx-2 rounded-full" href="/projects"
-        >Projects</NavLi
-      >
-      <NavLi class="hover:outline-1 rounded-full" href="/contact"
-        >Contact Me</NavLi
-      >
+    <NavUl
+      class="mx-auto"
+      {activeUrl}
+      classes={{
+        active: "rounded-xl dark:text-teal-500 dark:md:text-teal-500",
+      }}
+    >
+      <NavLi href="/">Home</NavLi>
+      <NavLi href="/projects">Projects</NavLi>
+      <NavLi href="/contact">Contact Me</NavLi>
     </NavUl>
   </Navbar>
-  <main class="px-4">{@render children()}</main>
+  <main>{@render children()}</main>
 </div>

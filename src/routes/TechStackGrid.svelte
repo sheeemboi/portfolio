@@ -6,10 +6,9 @@
   import Icon from "@iconify/svelte";
 </script>
 
-<!-- Reusable Category-->
-{#snippet toolCard(tech)}
+<div class="mt-3">
   <div class="flex flex-wrap gap-2">
-    {#each tech as t}
+    {#each TECH_STACK as t}
       <div
         class="bg-zinc-800 outline-zinc-800 flex items-center justify-center rounded-lg p-3 aspect-square hover:bg-zinc-900 hover:outline-1"
       >
@@ -18,13 +17,4 @@
       <Tooltip>{t.name}</Tooltip>
     {/each}
   </div>
-{/snippet}
-
-<!-- Snippets injected here -->
-<section class="flex flex-col min-h-full">
-  <Heading tag="h5">Technologies and Tools</Heading>
-  <div class=" mt-auto">
-    {@render toolCard(TECH_STACK)}
-    <!-- {@render toolCard(TECH_STACK[1], "Design")} -->
-  </div>
-</section>
+</div>

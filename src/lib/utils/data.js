@@ -53,13 +53,13 @@ export const TECH_STACK = [
 
 export const WORK_EXP = [
   {
-    title: "Frontend Dev",
+    title: "Frontend Developer",
     date: "Aug 2025 - Now",
     company: "Provincial Government of Aklan",
     description: "Lorem ipsum dolor."
   },
   {
-    title: "O.J.T. Trainee",
+    title: "On-the-Job Trainee",
     date: "Jan 2025 - Mar 2025",
     company: "Aklan Provincial ICT Office",
     description: "Lorem ipsum dolor."

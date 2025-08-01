@@ -10,8 +10,9 @@
 
 <section class="max-w-fit h-full flex flex-col">
   <Heading tag="h3">Shem E. Mariano</Heading>
-  <P>Frontend Developer</P>
-  <P>Graphic Designer</P>
+  <Heading tag="h5" class="dark:text-teal-500"
+    >Frontend Developer & Graphic Designer</Heading
+  >
   <P>Aklan, Philippines</P>
   <div class="mt-auto">
     <Button
@@ -26,7 +27,8 @@
       size="xs"
       outline
       color="alternative"
-      onclick={() => window.open("https://github.com/sheeemboi", "_blank")}
+      onclick={() =>
+        window.open("https://www.linkedin.com/in/shem-e-mariano/", "_blank")}
     >
       <LinkedinSolid class={profileIconClass} /> LinkedIn
     </Button>
