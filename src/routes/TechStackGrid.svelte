@@ -1,7 +1,7 @@
 <script>
   // @ts-nocheck
 
-  import { TECH_STACK } from "$lib/utils/data";
+  let { TECH_STACK } = $props();
   import { Heading, P, Card, Tooltip } from "flowbite-svelte";
   import Icon from "@iconify/svelte";
 </script>

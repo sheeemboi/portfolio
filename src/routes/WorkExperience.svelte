@@ -1,8 +1,7 @@
 <script>
   import { Heading, P, Timeline, TimelineItem, Button } from "flowbite-svelte";
   import Icon from "@iconify/svelte";
-  import { WORK_EXP } from "$lib/utils/data";
-
+  let { WORK_EXP } = $props();
   // contains deprecated warning. classes feature not working so stuck with h3Class
   let h3Class = "text-md";
 </script>
@@ -17,7 +16,6 @@
       </TimelineItem>
     {/each}
   </Timeline>
-
 </section>
 <!-- marker -->
 {#snippet orientationSlot()}

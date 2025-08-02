@@ -1,6 +1,6 @@
 <script>
   // @ts-nocheck
-
+  let { data } = $props();
   import { goto } from "$app/navigation";
   import { Heading, P, Hr, Button, Card, Spinner, span } from "flowbite-svelte";
   import {
@@ -14,29 +14,39 @@
   import WorkExperience from "./WorkExperience.svelte";
   import TechStackGrid from "./TechStackGrid.svelte";
 
-  let TechStack = $state(null);
+  // let TechStack = $state(null);
 
-  $effect(async () => {
-    const module = await import("./TechStackGrid.svelte");
-    TechStack = module.default;
-  });
+  // $effect(async () => {
+  //   const module = await import("./TechStackGrid.svelte");
+  //   TechStack = module.default;
+  // });
 
   const onGridClick = (url) => goto(url);
+  console.log(data);
 </script>
 
 <div class="grid grid-cols-4 gap-4 grid-rows-5 h-[600px]">
   <GridCard gridPos="col-span-3 row-span-2"><Hero /></GridCard>
-  <GridCard gridPos="col-span-1 row-span-3"><WorkExperience /></GridCard>
+  <GridCard gridPos="col-span-1 row-span-3">
+    {#if data.error}
+      <div class=" h-full flex items-center justify-center flex-1">
+        <Spinner color="cyan" />
+        <P class="ml-2">Loading data...</P>
+      </div>
+    {:else}
+      <WorkExperience WORK_EXP={data.work_exp} />
+    {/if}
+  </GridCard>
   <GridCard gridPos="col-span-3 row-start-3"><Intro /></GridCard>
   <GridCard gridPos="flex flex-col col-span-2 row-span-2">
     <Heading tag="h5">Technologies and Tools</Heading>
-    {#if !TechStack}
+    {#if data.error}
       <div class="flex items-center justify-center flex-1">
-        <Spinner color="gray" />
-        <P class="ml-2">Fetching data...</P>
+        <Spinner color="cyan" />
+        <P class="ml-2">Loading data...</P>
       </div>
     {:else}
-      <TechStack />
+      <TechStackGrid TECH_STACK={data.tech_stack} />
     {/if}
   </GridCard>
   <GridCard gridPos="cursor-pointer" onclick={() => onGridClick("/projects")}>
