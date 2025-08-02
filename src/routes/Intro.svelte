@@ -3,7 +3,7 @@
 </script>
 
 <section class="mt-auto">
-  <P>
+  <P class="md:text-sm lg:text-base">
     Hi! I'm a 23-year-old someone who went late into web development. Does
     graphic design and layout since high school but now shifts focus into
     frontend development.

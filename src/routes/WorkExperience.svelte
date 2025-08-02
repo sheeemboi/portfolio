@@ -7,7 +7,6 @@
 </script>
 
 <section class="relative min-h-full">
-  <Heading tag="h5">Work Experience</Heading>
   <Timeline class="mt-6 h-fit">
     {#each WORK_EXP as we}
       {@render orientationSlot()}

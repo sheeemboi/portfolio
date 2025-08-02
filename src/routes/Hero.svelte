@@ -1,39 +1,34 @@
 <script>
   import { Heading, P, Button } from "flowbite-svelte";
   import {
-    FilePdfSolid,
+    FilePdfOutline,
     GithubSolid,
     LinkedinSolid,
+    MapPinOutline,
+    EnvelopeOutline,
   } from "flowbite-svelte-icons";
-  let profileIconClass = "inline mr-1";
+  let iconClass = "inline m-2";
 </script>
 
 <section class="max-w-fit h-full flex flex-col">
   <Heading tag="h3">Shem E. Mariano</Heading>
-  <Heading tag="h5" class="dark:text-teal-500"
-    >Frontend Developer & Graphic Designer</Heading
-  >
-  <P>Aklan, Philippines</P>
-  <div class="mt-auto">
-    <Button
-      size="xs"
-      outline
-      color="alternative"
-      onclick={() => window.open("https://github.com/sheeemboi", "_blank")}
-    >
-      <GithubSolid class={profileIconClass} /> Github
+  <P class="dark:text-zinc-300 mt-1">Frontend Developer<br /></P>
+  <P class="dark:text-zinc-300 mb-1">Graphic Designer</P>
+  <P class="dark:text-zinc-400 text-sm">
+    <MapPinOutline class="inline" /> Philippines
+  </P>
+  <div class="mt-auto flex items-center text-zinc-400">
+    <a href="https://github.com/sheeemboi" target="_blank">
+      <GithubSolid size="lg" class="{iconClass} ml-0" />
+    </a>
+    <a href="https://github.com/sheeemboi" target="_blank">
+      <LinkedinSolid class={iconClass} />
+    </a>
+    <a href="https://github.com/sheeemboi" target="_blank">
+      <EnvelopeOutline class={iconClass} />
+    </a>
+    <Button size="xs" outline color="alternative" class="ml-2">
+      Resume<FilePdfOutline class="inline ml-1" />
     </Button>
-    <Button
-      size="xs"
-      outline
-      color="alternative"
-      onclick={() =>
-        window.open("https://www.linkedin.com/in/shem-e-mariano/", "_blank")}
-    >
-      <LinkedinSolid class={profileIconClass} /> LinkedIn
-    </Button>
-    <Button size="xs" outline color="alternative"
-      ><FilePdfSolid class={profileIconClass} /> Resume</Button
-    >
   </div>
 </section>

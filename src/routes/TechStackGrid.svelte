@@ -10,9 +10,14 @@
   <div class="flex flex-wrap gap-2">
     {#each TECH_STACK as t}
       <div
-        class="bg-zinc-800 outline-zinc-800 flex items-center justify-center rounded-lg p-3 aspect-square hover:bg-zinc-900 hover:outline-1"
+        class="bg-zinc-800 flex items-center justify-center rounded-lg p-3 aspect-square hover:bg-zinc-900 hover:outline-1"
+        style="outline-color: {t.color}"
       >
-        <Icon icon={t.icon} class="text-3xl mr-1" style="color: {t.color}" />
+        <Icon
+          icon={t.icon}
+          class="lg:text-3xl md:text-2xl mr-1"
+          style="color: {t.color}"
+        />
       </div>
       <Tooltip>{t.name}</Tooltip>
     {/each}
