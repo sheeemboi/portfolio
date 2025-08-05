@@ -1,5 +1,5 @@
 <script>
-  import { Heading, P, Timeline, TimelineItem, Button } from "flowbite-svelte";
+  import { P, Timeline, TimelineItem, List, Li } from "flowbite-svelte";
   import Icon from "@iconify/svelte";
   let { WORK_EXP } = $props();
   // contains deprecated warning. classes feature not working so stuck with h3Class
@@ -12,6 +12,11 @@
       {@render orientationSlot()}
       <TimelineItem {h3Class} title={we.title} date={we.date}>
         <P size="sm" class="dark:text-zinc-400">{we.company}</P>
+        <List position="outside" tag="ul" class="ml-4 text-sm">
+          {#each we.description as desc}
+          <Li>{desc}</Li>
+          {/each}
+        </List>
       </TimelineItem>
     {/each}
   </Timeline>

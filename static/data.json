@@ -56,13 +56,36 @@
     "title": "Frontend Developer",
     "date": "Aug 2025 - Now",
     "company": "Provincial Government of Aklan",
-    "description": "Lorem ipsum dolor."
+    "description": [
+      "TBA"
+    ]
   },
   {
     "title": "On-the-Job Trainee",
     "date": "Jan 2025 - Mar 2025",
     "company": "Aklan Provincial ICT Office",
-    "description": "Lorem ipsum dolor."
+    "description": [
+      "Built backend applications using Django Framework",
+      "Set up a Linux-based server."
+    ]
+  }
+],
+"education" : {
+  "school": "Garcia College of Technology",
+  "date": "Aug 2021 - Jul 2025",
+  "program": "B.S. Computer Science",
+  "description": [
+    "Developed frontend skills",
+    "Made graphic designs for our department"
+  ]
+},
+"projects_overview": [
+  {
+    "name": "portfolio",
+    "desc": "lorem ipsum",
+    "tech_stack": [
+      "sveltekit", "tailwindcss", "flowbite-svelte"
+    ]
   }
 ]
 }

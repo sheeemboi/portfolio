@@ -1,4 +1,5 @@
 <script>
+  import { goto } from "$app/navigation";
   import { Heading, P, Button } from "flowbite-svelte";
   import {
     FilePdfOutline,
@@ -27,8 +28,10 @@
     <a href="https://github.com/sheeemboi" target="_blank">
       <EnvelopeOutline class={iconClass} />
     </a>
-    <Button size="xs" outline color="alternative" class="ml-2">
-      Resume<FilePdfOutline class="inline ml-1" />
-    </Button>
+    <a href="/resume.pdf" target="_blank" download>
+      <Button size="xs" outline color="alternative" class="ml-2">
+        Resume<FilePdfOutline class="inline ml-1" />
+      </Button>
+    </a>
   </div>
 </section>

@@ -21,7 +21,7 @@
   />
 </svelte:head>
 
-<div class="flex flex-col justify-between max-w-5xl mx-auto h-screen">
+<div class="flex flex-col justify-between max-w-6xl mx-auto h-screen">
   <Navbar>
     <NavUl
       class="mx-auto block font-medium"
@@ -39,7 +39,7 @@
     </NavUl>
   </Navbar>
   <main class="px-3">{@render children()}</main>
-  <Footer class="dark:bg-zinc-950 mt-2  ">
+  <Footer class="dark:bg-transparent mt-2  ">
     <FooterCopyright class="dark:text-zinc-300 text-center" year={2025}
     ></FooterCopyright>
     <P size="sm" class="dark:text-zinc-300 text-center"

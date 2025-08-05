@@ -1,5 +1,7 @@
 <script>
-  let { onclick, children, gridPos } = $props();
+  // @ts-nocheck
+
+  let { onclick, children = null, gridPos } = $props();
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
