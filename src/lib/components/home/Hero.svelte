@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { hero } from '$lib/data/homeData';
+  export let hero;
   import { Heading, P, Button } from 'flowbite-svelte';
   import {
     MapPinOutline,

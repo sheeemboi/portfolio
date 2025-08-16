@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { education } from '$lib/data/homeData';
+  export let education;
   import { Heading, Timeline, TimelineItem, P } from 'flowbite-svelte';
 </script>
 

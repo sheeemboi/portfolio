@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Heading, Tooltip } from 'flowbite-svelte';
-  import { tools } from '$lib/data/homeData';
   import 'iconify-icon';
+  export let tools;
 </script>
 
 <section class="flex flex-col h-full">

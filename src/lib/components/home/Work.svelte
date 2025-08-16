@@ -7,7 +7,7 @@
     List,
     Li,
   } from 'flowbite-svelte';
-  import { work } from '$lib/data/homeData';
+  export let work;
   let h3Class = 'text-md';
   import { BriefcaseOutline } from 'flowbite-svelte-icons';
 </script>

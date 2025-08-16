@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Heading, P, Hr } from 'flowbite-svelte';
-  import { projects } from '$lib/data/homeData';
+  export let projects;
 </script>
 
 <Heading tag="h5" class="text-center mb-4">Projects</Heading>
