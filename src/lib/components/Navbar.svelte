@@ -8,8 +8,8 @@
       <a href="/projects">
         <li>Projects</li>
       </a>
-      <a href="contact">
-        <li>Contact</li>
+      <a href="designs">
+        <li>Designs</li>
       </a>
     </ul>
   </nav>

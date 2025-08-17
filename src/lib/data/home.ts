@@ -85,17 +85,18 @@ export const education = {
   school: "Garcia College of Technology",
   date: "Aug 2021 - Jul 2025",
   program: "B.S. Computer Science",
+  location: "Aklan, Philippines"
 }
 
 export const projects = [
   {
     name: "Portfolio",
-    desc: "Portfolio built with Sveltekit and Flowbite-Svelte",
+    desc: "Portfolio built with Sveltekit and Flowbite-Svelte.",
     tools: ["Sveltekit", "TailwindCSS", "Flowbite-Svelte"]
   },
   {
     name: "Tymn",
-    desc: "A Facial Recognition Student Attendance Checker",
+    desc: "A facial recognition application collaboratively developed using Python and its libraries.",
     tools: ["Python", "CTkinter", "SQLite"]
   }
 ]

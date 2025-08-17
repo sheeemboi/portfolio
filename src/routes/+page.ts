@@ -1,5 +1,5 @@
   import "./app.css";
-  import * as data from "$lib/data/homeData"
+  import * as data from "$lib/data/home"
 
   export function load() {
     return {data};

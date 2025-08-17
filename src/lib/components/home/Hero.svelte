@@ -1,5 +1,6 @@
 <script lang="ts">
   export let hero;
+  import mandalatest from '$lib/assets/test/mandalatest.png';
   import { Heading, P, Button } from 'flowbite-svelte';
   import {
     MapPinOutline,
@@ -43,5 +44,7 @@
       </a>
     </div>
   </div>
-  <div class="w-[33%] h-full bg-red-700 ml-auto"></div>
+  <div class="w-[33%] h-full ml-auto">
+    <img src={mandalatest} alt="" class="scale-150" />
+  </div>
 </div>
