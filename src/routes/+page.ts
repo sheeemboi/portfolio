@@ -1,4 +1,4 @@
-  import "./app.css";
+  // import "../app.css";
   import * as data from "$lib/data/home"
 
   export function load() {

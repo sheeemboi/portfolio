@@ -3,7 +3,7 @@
   let homeData = data.data;
 
   import mandalatest from '$lib/assets/test/mandalatest.png';
-  import { Button, Card, P, Spinner } from 'flowbite-svelte';
+  import { Button, Card, Heading, P, Spinner } from 'flowbite-svelte';
   import { fade, fly, slide } from 'svelte/transition';
   import { onMount } from 'svelte';
 
@@ -18,58 +18,54 @@
   import { visitedPages } from '$lib/store/sessionStore';
   import { markVisited } from '$lib/helper/markVisited.js';
   import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
 
   let gridItemDefaultClass =
-    'overflow-hidden dark:bg-zinc-900 rounded-2xl w-full outline outline-1 dark:outline-zinc-500/20 h-fit sm:h-full p-8';
+    'overflow-hidden dark:bg-zinc-900 rounded-2xl w-full outline transition-all duration-500 outline-1 dark:outline-zinc-500/20 dark:hover:outline-red-600 h-fit sm:h-full p-8';
   let gridItemNoPadding =
-    'overflow-hidden rounded-2xl w-full outline outline-1 dark:outline-zinc-500/20 h-fit sm:h-full';
+    'overflow-hidden rounded-2xl w-full outline outline-1 transition-all duration-500 dark:outline-zinc-500/20 dark:hover:outline-red-600 h-fit sm:h-full';
 
   // showGrid is used for initiating the transition of grids. Removing so will make the grids render instantly without in:fly transitions.
-  // onMount(() => {
-  //   console.log(get(homeLoaded));
-  //   showGrid = true;
-  //   if (!get(homeLoaded)) {
-  //     setTimeout(() => {
-  //       homeLoaded.set(true);
-  //       console.log('homeLoaded after flip:', get(homeLoaded));
-  //     }, 2000);
-  //   }
-  // });
-
-  // let isLoaded: boolean;
-
-  // onMount(() => {
-  //   showGrid = true;
-  //   isLoaded = true;
-  //   const currentPath = $page.url.pathname;
-
-  //   visitedPages.update((pages) => {
-  //     if (!pages.has(currentPath)) {
-  //       isLoaded = false;
-  //       setTimeout(() => {
-  //         visitedPages.update((p) => new Set(p).add(currentPath));
-  //         isLoaded = true;
-  //       }, 2000);
-  //     }
-  //     return pages;
-  //   });
-
-  //   console.log($visitedPages);
-  // });
 
   let showGrid = false;
   $: currentPath = $page.url.pathname;
-  $: isFirstVisit = !$visitedPages.has(currentPath);
+
+  let formattedTime: string;
+
+  const formatter = new Intl.DateTimeFormat('en-PH', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+    timeZone: 'Asia/Manila', // ✅ Force Manila time
+  });
+
+  function tickTock() {
+    formattedTime = formatter.format(new Date());
+  }
 
   onMount(() => {
+    tickTock();
+    const interval = setInterval(tickTock, 500);
     showGrid = true;
+
+    visitedPages.update((pages) => {
+      if (!pages.has(currentPath)) {
+        visitedPages.update((p) => new Set(p).add(currentPath));
+      }
+      return pages;
+    });
+
+    return () => clearInterval(interval);
   });
+
+  $: isFirstVisit = !$visitedPages.has(currentPath);
 </script>
 
 {#if data}
   {#if showGrid && isFirstVisit}
     <div
-      class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4"
+      class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4 mx-4"
     >
       <div
         in:fly={{ y: -100, duration: 500 }}
@@ -95,9 +91,12 @@
       >
         <Projects projects={homeData.projects} />
       </div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         in:fly={{ delay: 1500, x: -100, duration: 500 }}
         class="{gridItemNoPadding} dark:bg-zinc-900 sm:row-start-6 sm:col-span-2"
+        on:click={() => goto('/design')}
       >
         <Designs />
       </div>
@@ -109,10 +108,17 @@
       </div>
       <div
         in:fly={{ delay: 1500, x: 100, duration: 500 }}
-        class="{gridItemNoPadding} dark:bg-red-700 sm:col-span-1 sm:row-span-1 flex items-center"
+        class="{gridItemNoPadding} relative bg-gray-900 sm:col-span-1 sm:row-span-1 flex flex-col items-center justify-center"
         on:introend={() => markVisited(currentPath)}
       >
-        <img src={mandalatest} alt="" class="scale-150" />
+        <div>
+          <Heading tag="h4">{formattedTime}</Heading>
+          <P class="dark:text-gray-400">Philippine Standard Time</P>
+        </div>
+        <div class="absolute flex flex-col right-0 h-full w-6">
+          <div class="bg-blue-500 flex-1"></div>
+          <div class="bg-red-600 flex-1"></div>
+        </div>
       </div>
       <div
         in:fly={{ delay: 1250, x: 100, duration: 500 }}
@@ -123,7 +129,7 @@
     </div>
   {:else}
     <div
-      class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4"
+      class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4 mx-4"
     >
       <div class="{gridItemNoPadding} bg-zinc-900 sm:col-span-3 sm:row-span-2">
         <Hero hero={homeData.hero} />
@@ -141,8 +147,11 @@
       <div class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-3">
         <Projects projects={homeData.projects} />
       </div>
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
       <div
         class="{gridItemNoPadding} dark:bg-zinc-900 sm:row-start-6 sm:col-span-2"
+        on:click={() => goto('/design')}
       >
         <Designs />
       </div>
@@ -150,9 +159,16 @@
         <Work work={homeData.work} />
       </div>
       <div
-        class="{gridItemNoPadding} dark:bg-red-700 sm:col-span-1 sm:row-span-1 flex items-center"
+        class="{gridItemNoPadding} relative bg-gray-900 sm:col-span-1 sm:row-span-1 flex flex-col items-center justify-center"
       >
-        <img src={mandalatest} alt="" class="scale-150" />
+        <div>
+          <Heading tag="h4">{formattedTime}</Heading>
+          <P class="dark:text-gray-400">Philippine Standard Time</P>
+        </div>
+        <div class="absolute flex flex-col right-0 h-full w-6">
+          <div class="bg-blue-500 flex-1"></div>
+          <div class="bg-red-600 flex-1"></div>
+        </div>
       </div>
       <div class="{gridItemDefaultClass} sm:col-span-1 sm:row-span-2">
         <Education education={homeData.education} />

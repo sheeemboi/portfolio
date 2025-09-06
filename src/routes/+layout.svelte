@@ -1,5 +1,5 @@
 <script lang="ts">
-  import './app.css';
+  import '../app.css';
   import favicon from '$lib/assets/favicon.svg';
   import Navbar from '$lib/components/Navbar.svelte';
   import Footer from '$lib/components/Footer.svelte';
@@ -8,7 +8,7 @@
 <svelte:head>
   <link rel="icon" href={favicon} />
 </svelte:head>
-<div class="relative font-rubik max-w-6xl mx-auto min-h-screen border-1">
+<div class="flex flex-col relative font-rubik max-w-6xl mx-auto min-h-screen border-1">
   <Navbar />
   <slot />
   <Footer />

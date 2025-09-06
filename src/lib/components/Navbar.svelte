@@ -5,11 +5,8 @@
         <li>Home</li>
       </a>
 
-      <a href="/projects">
-        <li>Projects</li>
-      </a>
-      <a href="designs">
-        <li>Designs</li>
+      <a href="/contact">
+        <li>Contact Me</li>
       </a>
     </ul>
   </nav>

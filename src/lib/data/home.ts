@@ -11,13 +11,13 @@ export const hero = {
   },
 }
 
-export const shortIntro = "Hi! I'm a 23-year-old someone who went late into web development. Does graphic design and layout since high school but now shifts focus into frontend development."
+export const shortIntro = "Hi! I’m a frontend developer with roots in graphic design and layout, bringing creativity and precision into modern web development."
 
 export const tools = [
   {
-    name: "JavaScript",
-    color: "#ffca28",
-    icon: "material-icon-theme:javascript"
+    name: "Typescript",
+    color: "#3b82f6",
+    icon: "material-icon-theme:typescript"
   },
   {
     name: "SvelteKit",
