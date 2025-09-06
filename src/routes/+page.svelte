@@ -1,69 +1,185 @@
-<script>
-  // @ts-nocheck
-  let { data } = $props();
-  import { goto } from "$app/navigation";
-  import { Heading, P, Hr, Button, Card, Spinner, span } from "flowbite-svelte";
-  import {
-    FilePdfSolid,
-    GithubSolid,
-    ArrowUpRightFromSquareOutline,
-  } from "flowbite-svelte-icons";
-  import GridCard from "$lib/components/GridCard.svelte";
-  import Hero from "./Hero.svelte";
-  import Intro from "./Intro.svelte";
-  import WorkExperience from "./WorkExperience.svelte";
-  import TechStackGrid from "./TechStackGrid.svelte";
-  import Grid from "./Grid.svelte";
-  const onGridClick = (url) => goto(url);
+<script lang="ts">
+  export let data;
+  let homeData = data.data;
+
+  import { Button, Card, Heading, P, Spinner } from 'flowbite-svelte';
+  import { fade, fly, slide } from 'svelte/transition';
+  import { onMount } from 'svelte';
+
+  import Hero from '$lib/components/home/Hero.svelte';
+  import ShortIntro from '$lib/components/home/ShortIntro.svelte';
+  import TechnologiesAndTools from '$lib/components/home/TechnologiesAndTools.svelte';
+  import Work from '$lib/components/home/Work.svelte';
+  import Education from '$lib/components/home/Education.svelte';
+  import Projects from '$lib/components/home/Projects.svelte';
+  import Designs from '$lib/components/home/Designs.svelte';
+  import { get } from 'svelte/store';
+  import { visitedPages } from '$lib/store/sessionStore';
+  import { markVisited } from '$lib/helper/markVisited.js';
+  import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
+
+  let gridItemDefaultClass =
+    'overflow-hidden dark:bg-zinc-900 rounded-2xl w-full outline transition-all duration-500 outline-1 dark:outline-zinc-500/20 dark:hover:outline-red-600 h-fit sm:h-full p-8';
+  let gridItemNoPadding =
+    'overflow-hidden rounded-2xl w-full outline outline-1 transition-all duration-500 dark:outline-zinc-500/20 dark:hover:outline-red-600 h-fit sm:h-full';
+
+  // showGrid is used for initiating the transition of grids. Removing so will make the grids render instantly without in:fly transitions.
+
+  let showGrid = false;
+  $: currentPath = $page.url.pathname;
+
+  let formattedTime: string;
+
+  const formatter = new Intl.DateTimeFormat('en-PH', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+    timeZone: 'Asia/Manila', // ✅ Force Manila time
+  });
+
+  function tickTock() {
+    formattedTime = formatter.format(new Date());
+  }
+
+  onMount(() => {
+    tickTock();
+    const interval = setInterval(tickTock, 500);
+    showGrid = true;
+
+    visitedPages.update((pages) => {
+      if (!pages.has(currentPath)) {
+        visitedPages.update((p) => new Set(p).add(currentPath));
+      }
+      return pages;
+    });
+
+    return () => clearInterval(interval);
+  });
+
+  $: isFirstVisit = !$visitedPages.has(currentPath);
 </script>
 
-<div class="grid grid-cols-4 gap-4 grid-rows-6 h-[720px]">
-  <!-- Hero Section -->
-  <GridCard gridPos="col-span-3 row-span-2"
-    ><Grid {data}>
-      <Hero />
-    </Grid>
-  </GridCard>
-  <!-- Work Experience -->
-  <GridCard gridPos="col-span-1 row-span-4">
-    <Heading tag="h5">Work</Heading>
-    <Grid {data}>
-      <WorkExperience WORK_EXP={data.work_exp} />
-    </Grid>
-  </GridCard>
-  <!-- Short Intro -->
-  <GridCard gridPos="col-span-3 row-start-3">
-    <Grid {data}>
-      <Intro />
-    </Grid>
-  </GridCard>
-  <!-- Tech Stack -->
-  <GridCard gridPos="flex flex-col col-span-2 row-span-2">
-    <Heading tag="h5">Technologies and Tools</Heading>
-    <Grid {data}>
-      <TechStackGrid TECH_STACK={data.tech_stack} />
-    </Grid>
-  </GridCard>
-  <!-- Designs -->
-  <GridCard
-    gridPos="cursor-pointer col-start-1 col-span-2"
-    onclick={() => onGridClick("/projects")}
-  >
-    <Grid {data}>
-      <div class="container h-full flex flex-col">
-        <Heading class="flex items-center" tag="h5">
-          Designs
-          <ArrowUpRightFromSquareOutline class="ms-2" size="md" />
-        </Heading>
-        <div class="h-1 w-[30%] flex-1 mt-1 flex gap-1">
-          <div class="rounded-sm bg-cyan-500 flex-1 h-full"></div>
-          <div class="rounded-sm bg-fuchsia-500 flex-1 h-full"></div>
-          <div class="rounded-sm bg-yellow-500 flex-1 h-full"></div>
-          <div class="rounded-sm bg-zinc-500 flex-1 h-full"></div>
+{#if data}
+  {#if showGrid && isFirstVisit}
+    <div
+      class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4 mx-4"
+    >
+      <div
+        in:fly={{ y: -100, duration: 500 }}
+        class="{gridItemNoPadding} bg-zinc-900 sm:col-span-3 sm:row-span-2"
+      >
+        <Hero hero={homeData.hero} />
+      </div>
+      <div
+        in:fly={{ delay: 250, x: -100, duration: 500 }}
+        class="{gridItemDefaultClass} sm:row-start-3 sm:col-start-1 sm:col-end-4"
+      >
+        <ShortIntro shortIntro={homeData.shortIntro} />
+      </div>
+      <div
+        in:fly={{ delay: 1000, x: -100, duration: 500 }}
+        class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-2 sm:col-start-1 sm:col-end-3"
+      >
+        <TechnologiesAndTools tools={homeData.tools} />
+      </div>
+      <div
+        in:fly={{ delay: 750, y: 25, duration: 500 }}
+        class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-3"
+      >
+        <Projects projects={homeData.projects} />
+      </div>
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <div
+        in:fly={{ delay: 1500, x: -100, duration: 500 }}
+        class="{gridItemNoPadding} dark:bg-zinc-900 sm:row-start-6 sm:col-span-2"
+        on:click={() => goto('/design')}
+      >
+        <Designs />
+      </div>
+      <div
+        in:fly={{ delay: 500, x: 100, duration: 500 }}
+        class="{gridItemDefaultClass} sm:col-span-1 sm:row-span-3"
+      >
+        <Work work={homeData.work} />
+      </div>
+      <div
+        in:fly={{ delay: 1500, x: 100, duration: 500 }}
+        class="{gridItemNoPadding} relative bg-gray-900 sm:col-span-1 sm:row-span-1 flex flex-col items-center justify-center"
+        on:introend={() => markVisited(currentPath)}
+      >
+        <div>
+          <Heading tag="h4">{formattedTime}</Heading>
+          <P class="dark:text-gray-400">Philippine Standard Time</P>
+        </div>
+        <div class="absolute flex flex-col right-0 h-full w-6">
+          <div class="bg-blue-500 flex-1"></div>
+          <div class="bg-red-600 flex-1"></div>
         </div>
       </div>
-    </Grid>
-  </GridCard>
-  <GridCard gridPos="row-start-4 col-start-3 row-span-3">5</GridCard>
-  <GridCard gridPos="row-start-5 col-start-4 row-span-2">6</GridCard>
-</div>
+      <div
+        in:fly={{ delay: 1250, x: 100, duration: 500 }}
+        class="{gridItemDefaultClass} sm:col-span-1 sm:row-span-2"
+      >
+        <Education education={homeData.education} />
+      </div>
+    </div>
+  {:else}
+    <div
+      class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4 mx-4"
+    >
+      <div class="{gridItemNoPadding} bg-zinc-900 sm:col-span-3 sm:row-span-2">
+        <Hero hero={homeData.hero} />
+      </div>
+      <div
+        class="{gridItemDefaultClass} sm:row-start-3 sm:col-start-1 sm:col-end-4"
+      >
+        <ShortIntro shortIntro={homeData.shortIntro} />
+      </div>
+      <div
+        class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-2 sm:col-start-1 sm:col-end-3"
+      >
+        <TechnologiesAndTools tools={homeData.tools} />
+      </div>
+      <div class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-3">
+        <Projects projects={homeData.projects} />
+      </div>
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div
+        class="{gridItemNoPadding} dark:bg-zinc-900 sm:row-start-6 sm:col-span-2"
+        on:click={() => goto('/design')}
+      >
+        <Designs />
+      </div>
+      <div class="{gridItemDefaultClass} sm:col-span-1 sm:row-span-3">
+        <Work work={homeData.work} />
+      </div>
+      <div
+        class="{gridItemNoPadding} relative bg-gray-900 sm:col-span-1 sm:row-span-1 flex flex-col items-center justify-center"
+      >
+        <div>
+          <Heading tag="h4">{formattedTime}</Heading>
+          <P class="dark:text-gray-400">Philippine Standard Time</P>
+        </div>
+        <div class="absolute flex flex-col right-0 h-full w-6">
+          <div class="bg-blue-500 flex-1"></div>
+          <div class="bg-red-600 flex-1"></div>
+        </div>
+      </div>
+      <div class="{gridItemDefaultClass} sm:col-span-1 sm:row-span-2">
+        <Education education={homeData.education} />
+      </div>
+    </div>
+  {/if}
+{:else}
+  <div class="flex w-full items-center justify-center mt-[30vh]">
+    <Card padding="xl" class="dark:bg-zinc-900 border-none">
+      <P align="center" class="pb-8">Content missing. :/</P>
+      <Button color="red" on:click={() => location.reload()}>Reload Page</Button
+      >
+    </Card>
+  </div>
+{/if}
