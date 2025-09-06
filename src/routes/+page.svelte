@@ -2,7 +2,6 @@
   export let data;
   let homeData = data.data;
 
-  import mandalatest from '$lib/assets/test/mandalatest.png';
   import { Button, Card, Heading, P, Spinner } from 'flowbite-svelte';
   import { fade, fly, slide } from 'svelte/transition';
   import { onMount } from 'svelte';
