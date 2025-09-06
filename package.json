@@ -42,5 +42,8 @@
 		"svelte-hero-icons": "^5.2.0",
 		"svelte-persisted-store": "^0.11.0",
 		"vitest": "^2.0.5"
-	}
+	},
+  "engines": {
+    "node": "20.11.0"
+  }
 }
