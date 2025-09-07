@@ -35,6 +35,9 @@
   }
 </script>
 
+<svelte:head>
+  <title>Contact - Shem</title>
+</svelte:head>
 <div
   class="flex-1 w-fit mx-auto flex flex-col justify-center items-center gap-6"
 >

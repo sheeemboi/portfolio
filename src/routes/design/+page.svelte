@@ -25,7 +25,9 @@
   $: isFirstVisit = !$visitedPages.has(currentPath);
   $: console.log($visitedPages);
 </script>
-
+<svelte:head>
+  <title>Design - Shem</title>
+</svelte:head>
 {#if data}
   <Heading tag="h2" class="text-center my-8">Designs</Heading>
   {#if showGrid && isFirstVisit}

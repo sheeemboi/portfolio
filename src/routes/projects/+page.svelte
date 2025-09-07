@@ -28,6 +28,9 @@
   $: isFirstVisit = !$visitedPages.has(currentPath);
 </script>
 
+<svelte:head>
+  <title>Projects - Shem</title>
+</svelte:head>
 <Heading tag="h2" class="my-8 text-center">Projects</Heading>
 {#if showProjects && isFirstVisit}
   <div class="flex flex-col gap-8 mx-auto px-4">

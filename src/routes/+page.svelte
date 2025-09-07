@@ -60,6 +60,9 @@
   $: isFirstVisit = !$visitedPages.has(currentPath);
 </script>
 
+<svelte:head>
+  <title>Shem - Frontend Dev.</title>
+</svelte:head>
 {#if data}
   {#if showGrid && isFirstVisit}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
