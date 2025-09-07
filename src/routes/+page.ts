@@ -1,6 +1,6 @@
-  // import "../app.css";
-  import * as data from "$lib/data/home"
+  // // import "../app.css";
+  // import * as data from "$lib/data/home"
 
-  export function load() {
-    return {data};
-  }
+  // export function load() {
+  //   return {data};
+  // }
