@@ -4,7 +4,12 @@
       <a href="/">
         <li>Home</li>
       </a>
-
+      <a href="/projects">
+        <li>Projects</li>
+      </a>
+      <a href="/design">
+        <li>Design</li>
+      </a>
       <a href="/contact">
         <li>Contact Me</li>
       </a>

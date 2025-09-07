@@ -25,19 +25,9 @@ export const tools = [
     icon: "material-icon-theme:svelte"
   },
   {
-    name: "Tailwind CSS",
+    name: "Tailwind",
     color: "#4db6ac",
     icon: "material-icon-theme:tailwindcss"
-  },
-  {
-    name: "Flowbite-Svelte",
-    color: "#924eff",
-    icon: "flowbite:flowbite-solid"
-  },
-  {
-    name: "Vite",
-    color: "#ffab00",
-    icon: "material-icon-theme:vite"
   },
   {
     name: "Git",
@@ -92,11 +82,11 @@ export const projects = [
   {
     name: "Portfolio",
     desc: "Portfolio built with Sveltekit and Flowbite-Svelte.",
-    tools: ["Sveltekit", "TailwindCSS", "Flowbite-Svelte"]
+    tools: ["SvelteKit", "TailwindCSS"]
   },
   {
     name: "Tymn",
     desc: "A facial recognition application collaboratively developed using Python and its libraries.",
-    tools: ["Python", "CTkinter", "SQLite"]
+    tools: ["Python", "CTkinter"]
   }
 ]
