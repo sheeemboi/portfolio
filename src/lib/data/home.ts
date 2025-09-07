@@ -11,7 +11,7 @@ export const hero = {
   },
 }
 
-export const shortIntro = "Hi! I’m a frontend developer with roots in graphic design and layout, bringing creativity and precision into modern web development."
+export const shortIntro = "Hi! I’m a frontend developer with roots in graphic design and layout. These days, I’m making the web prettier and easier to use, one div at a time."
 
 export const tools = [
   {
