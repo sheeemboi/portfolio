@@ -1,5 +1,5 @@
-import * as designs from '$lib/data/designs'
+// import * as designs from '$lib/data/designs'
 
-export function load() {
-  return {designs}
-}
+// export function load() {
+//   return {designs}
+// }

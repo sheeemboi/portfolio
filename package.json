@@ -30,20 +30,17 @@
 		"vite": "^5.0.3"
 	},
 	"dependencies": {
+		"@emailjs/browser": "^4.4.1",
 		"@iconify/svelte": "^5.0.1",
 		"@sveltejs/adapter-node": "^5.2.13",
 		"@tiptap/core": "^2.11.5",
 		"@tiptap/starter-kit": "^2.11.5",
 		"axios": "^1.7.7",
-		"dotenv": "^16.4.5",
 		"iconify-icon": "^3.0.0",
-		"qrcode": "^1.5.4",
-		"svelte-flatpickr": "^3.3.4",
 		"svelte-hero-icons": "^5.2.0",
-		"svelte-persisted-store": "^0.11.0",
 		"vitest": "^2.0.5"
 	},
-  "engines": {
-    "node": "20.19.3"
-  }
+	"engines": {
+		"node": "20.19.3"
+	}
 }

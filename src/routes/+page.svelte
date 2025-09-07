@@ -13,9 +13,8 @@
   import Education from '$lib/components/home/Education.svelte';
   import Projects from '$lib/components/home/Projects.svelte';
   import Designs from '$lib/components/home/Designs.svelte';
-  import { get } from 'svelte/store';
   import { visitedPages } from '$lib/store/sessionStore';
-  import { markVisited } from '$lib/helper/markVisited.js';
+  import { markVisited } from '$lib/helper/markVisited';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
 
@@ -63,6 +62,7 @@
 
 {#if data}
   {#if showGrid && isFirstVisit}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
       class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4 mx-4"
     >
@@ -84,9 +84,11 @@
       >
         <TechnologiesAndTools tools={homeData.tools} />
       </div>
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div
         in:fly={{ delay: 750, y: 25, duration: 500 }}
-        class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-3"
+        class="{gridItemNoPadding} sm:row-start-4 sm:row-span-3"
+        on:click={() => goto('/projects')}
       >
         <Projects projects={homeData.projects} />
       </div>
@@ -110,7 +112,7 @@
         class="{gridItemNoPadding} relative bg-gray-900 sm:col-span-1 sm:row-span-1 flex flex-col items-center justify-center"
         on:introend={() => markVisited(currentPath)}
       >
-        <div>
+        <div class="my-2 mx-2">
           <Heading tag="h4">{formattedTime}</Heading>
           <P class="dark:text-gray-400">Philippine Standard Time</P>
         </div>
@@ -127,6 +129,7 @@
       </div>
     </div>
   {:else}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
       class="grid grid-cols-1 sm:grid-rows-6 sm:grid-cols-4 sm:h-[768px] gap-4 mx-4"
     >
@@ -143,7 +146,12 @@
       >
         <TechnologiesAndTools tools={homeData.tools} />
       </div>
-      <div class="{gridItemDefaultClass} sm:row-start-4 sm:row-span-3">
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
+      <div
+        class="{gridItemNoPadding} sm:row-start-4 sm:row-span-3"
+        on:click={() => goto('/projects')}
+      >
         <Projects projects={homeData.projects} />
       </div>
       <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -160,7 +168,7 @@
       <div
         class="{gridItemNoPadding} relative bg-gray-900 sm:col-span-1 sm:row-span-1 flex flex-col items-center justify-center"
       >
-        <div>
+        <div class="my-2 mx-2">
           <Heading tag="h4">{formattedTime}</Heading>
           <P class="dark:text-gray-400">Philippine Standard Time</P>
         </div>
