@@ -58,7 +58,7 @@ export const tools = [
 
 export const work = [
   {
-    title: "Frontend Developer (Job Order)",
+    title: "Frontend Web Developer",
     date: "Aug 2025 - Present",
     company: "Provincial Government of Aklan",
 

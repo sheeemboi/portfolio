@@ -40,8 +40,6 @@
 		"iconify-icon": "^3.0.0",
 		"svelte-hero-icons": "^5.2.0",
 		"vitest": "^2.0.5"
-	},
-	"engines": {
-		"node": ">=20.19.3"
 	}
+
 }
